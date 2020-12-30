@@ -53,16 +53,16 @@
         Find out how it currently feels like somewhere
       </p>
       <div class="row temp-item">
-        <p>Temperature  <span id="temp"></span></p>
+        <p>Temperature <span id="temp"></span></p>
       </div>
       <div class="row temp-item">
-        <p>Humidity  <span id="humidity"></span></p>
+        <p>Humidity <span id="humidity"></span></p>
       </div>
       <div class="row temp-item">
-        <p>windspeed  <span id="wind"></span></p>
+        <p>windspeed <span id="wind"></span></p>
       </div>
       <div class="row temp-item">
-        <p>Weather  <span id="weather"></span></p>
+        <p>Weather <span id="weather"></span></p>
       </div>
     </div>
 
@@ -70,6 +70,9 @@
     <div class="container-fluid accordion-section">
       <div class="row accordion-wrapper">
         <div class="accordion" id="accordianExample">
+          <h3 class="accordian-banner">
+            Find out the forecast for the coming 5 days
+          </h3>
           <div class="card">
             <div class="card-header" id="headingOne">
               <h2 class="clearfix">
@@ -80,7 +83,7 @@
                   aria-expanded="true"
                   aria-controls="collapseOne"
                 >
-                  How can i help you <i class="fas fa-angle-down"></i>
+                  <span id="nextdt-1"> </span><i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -92,8 +95,10 @@
             >
               <div class="card-body">
                 <ul>
-                  <li>temp<span></span></li>
-                  <li>cloudy<span></span></li>
+                  <li>Temperature :<span id="day1-temp"></span></li>
+                  <li>Min-Temp :<span id="day1-min"></span></li>
+                  <li>Max-Temp :<span id="day1-max"></span></li>
+                  <li>Humidity :<span id="day1-humd"></span></li>
                 </ul>
               </div>
             </div>
@@ -108,7 +113,7 @@
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  How can i help you <i class="fas fa-angle-down"></i>
+                  <span id="nextdt-2"> </span><i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -120,8 +125,10 @@
             >
               <div class="card-body">
                 <ul>
-                  <li>temp<span></span></li>
-                  <li>cloudy<span></span></li>
+                  <li>Temperature :<span id="day2-temp"></span></li>
+                  <li>Min-Temp :<span id="day2-min"></span></li>
+                  <li>Max-Temp :<span id="day2-max"></span></li>
+                  <li>Humidity :<span id="day2-humd"></span></li>
                 </ul>
               </div>
             </div>
@@ -136,7 +143,7 @@
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  How can i help you <i class="fas fa-angle-down"></i>
+                  <span id="nextdt-3"> </span> <i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -148,8 +155,10 @@
             >
               <div class="card-body">
                 <ul>
-                  <li>temp<span></span></li>
-                  <li>cloudy<span></span></li>
+                  <li>Temperature :<span id="day3-temp"></span></li>
+                  <li>Min-Temp :<span id="day3-min"></span></li>
+                  <li>Max-Temp :<span id="day3-max"></span></li>
+                  <li>Humidity :<span id="day3-humd"></span></li>
                 </ul>
               </div>
             </div>
@@ -164,7 +173,7 @@
                   aria-expanded="false"
                   aria-controls="collapseFour"
                 >
-                  How can i help you <i class="fas fa-angle-down"></i>
+                  <span id="nextdt-4"> </span> <i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -176,8 +185,10 @@
             >
               <div class="card-body">
                 <ul>
-                  <li>temp<span></span></li>
-                  <li>cloudy<span></span></li>
+                  <li>Temperature :<span id="day4-temp"></span></li>
+                  <li>Min-Temp :<span id="day4-min"></span></li>
+                  <li>Max-Temp :<span id="day4-max"></span></li>
+                  <li>Humidity :<span id="day4-humd"></span></li>
                 </ul>
               </div>
             </div>
@@ -192,7 +203,7 @@
                   aria-expanded="false"
                   aria-controls="collapseFive"
                 >
-                  How can i help you <i class="fas fa-angle-down"></i>
+                  <span id="nextdt-5"> </span> <i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -204,8 +215,10 @@
             >
               <div class="card-body">
                 <ul>
-                  <li>temp<span></span></li>
-                  <li>cloudy<span></span></li>
+                  <li>Temperature :<span id="day5-temp"></span></li>
+                  <li>Min-Temp :<span id="day5-min"></span></li>
+                  <li>Max-Temp :<span id="day5-max"></span></li>
+                  <li>Humidity :<span id="day5-humd"> </span></li>
                 </ul>
               </div>
             </div>
