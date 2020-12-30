@@ -14,7 +14,6 @@ var nextDay4 = $("#nextdt-4");
 var nextDay5 = $("#nextdt-5");
 var city = "";
 var cityID = "";
-var cities = [];
 
 /****** API KEY & QUERY String*******/
 var APIKey = "a0aca8a89948154a4182dcecc780b513";
@@ -61,12 +60,17 @@ function getCurrentWeather() {
   fetch(queryStr)
     .then((response) => response.json())
     .then((data) => {
-      tempDisplay.text(" : " + data.main.temp);
+      //convert data
+      let tempf = (data.main.temp - 273.15) * 1.8 + 32;
+      console.log(data);
+      let windsp = (data.wind.speed * 2.237).toFixed(1);
+      tempDisplay.text(" : " + tempf.toFixed(2));
       humidityDisplay.text(" : " + data.main.humidity);
-      windSpeedDisplay.text(" : " + data.wind.speed);
+      windSpeedDisplay.text(" : " + windsp);
       weatherDisplay.text(" : " + data.weather[0].description);
+      let feels = (data.main.feels_like - 273.15) * 1.8 + 32;
       currentBanner.text(
-        "Currently it feels like " + data.main.feels_like + " in " + data.name
+        "Currently it feels like " + feels.toFixed(2) + " in " + data.name
       );
 
       localStorage.setItem("city", data.name);
@@ -108,29 +112,44 @@ function getFutureForecast(cityID) {
         "The forcast for the coming five days in " + data.city.name
       );
       nextDay1.text(data.list[0].dt_txt.split(" ")[0] + " ");
-      $("#day1-temp").text(data.list[0].main.temp);
-      $("#day1-min").text(data.list[0].main.temp_min);
-      $("#day1-max").text(data.list[0].main.temp_max);
+      let temp = (data.list[0].main.temp - 273.15) * 1.8 + 32;
+      $("#day1-temp").text(temp.toFixed(2));
+      let min=(data.list[0].main.temp_min - 273.15) * 1.8 + 32;
+      $("#day1-min").text(min.toFixed(2));
+      let max=(data.list[0].main.temp_max - 273.15) * 1.8 + 32;
+      $("#day1-max").text(max.toFixed(2));
       $("#day1-humd").text(data.list[0].main.humidity);
       nextDay2.text(data.list[10].dt_txt.split(" ")[0] + " ");
-      $("#day2-temp").text(data.list[10].main.temp);
-      $("#day2-min").text(data.list[10].main.temp_min);
-      $("#day2-max").text(data.list[10].main.temp_max);
+      temp =(data.list[10].main.temp - 273.15) * 1.8 + 32;
+      $("#day2-temp").text(temp.toFixed(2));
+      min=(data.list[10].main.temp_min - 273.15) * 1.8 + 32;
+      $("#day2-min").text(min.toFixed(2));
+      max=(data.list[10].main.temp_max - 273.15) * 1.8 + 32;
+      $("#day2-max").text(max.toFixed(2));
       $("#day2-humd").text(data.list[10].main.humidity);
       nextDay3.text(data.list[20].dt_txt.split(" ")[0] + " ");
-      $("#day3-temp").text(data.list[20].main.temp);
-      $("#day3-min").text(data.list[20].main.temp_min);
-      $("#day3-max").text(data.list[20].main.temp_max);
+      temp =(data.list[20].main.temp - 273.15) * 1.8 + 32;
+      $("#day3-temp").text(temp.toFixed(2));
+      min=(data.list[20].main.temp_min - 273.15) * 1.8 + 32;
+      $("#day3-min").text(min.toFixed(2));
+      max=(data.list[20].main.temp_max - 273.15) * 1.8 + 32;
+      $("#day3-max").text(max.toFixed(2));
       $("#day3-humd").text(data.list[20].main.humidity);
       nextDay4.text(data.list[30].dt_txt.split(" ")[0] + " ");
-      $("#day4-temp").text(data.list[30].main.temp);
-      $("#day4-min").text(data.list[30].main.temp_min);
-      $("#day4-max").text(data.list[30].main.temp_max);
+      temp =(data.list[30].main.temp - 273.15) * 1.8 + 32;
+      $("#day4-temp").text(temp.toFixed(2));
+      min=(data.list[30].main.temp_min - 273.15) * 1.8 + 32;
+      $("#day4-min").text(min.toFixed(2));
+      max=(data.list[30].main.temp_max - 273.15) * 1.8 + 32;
+      $("#day4-max").text(max.toFixed(2));
       $("#day4-humd").text(data.list[30].main.humidity);
       nextDay5.text(data.list[39].dt_txt.split(" ")[0] + " ");
-      $("#day5-temp").text(data.list[39].main.temp);
-      $("#day5-min").text(data.list[39].main.temp_min);
-      $("#day5-max").text(data.list[39].main.temp_max);
+      temp =(data.list[39].main.temp - 273.15) * 1.8 + 32;
+      $("#day5-temp").text(temp.toFixed(2));
+      min=(data.list[39].main.temp_min - 273.15) * 1.8 + 32;
+      $("#day5-min").text(min.toFixed(2));
+      max=(data.list[39].main.temp_max - 273.15) * 1.8 + 32;
+      $("#day5-max").text(max.toFixed(2));
       $("#day5-humd").text(data.list[39].main.humidity);
       getUVI(data.city.coord.lat, data.city.coord.lon);
     });
