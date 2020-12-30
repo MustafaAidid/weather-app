@@ -12,6 +12,11 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -45,6 +50,16 @@
           </button>
         </div>
       </form>
+      <div class="row history">
+        <div class="col-auto">
+          <p class='history-para'>Last Searched city was <span class="last-search"></span> .</p>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-secondary history-btn" type="submit">
+            clear history
+          </button>
+        </div>
+      </div>
     </div>
 
     <!--****Current Day weather forecast****-->
@@ -59,10 +74,13 @@
         <p>Humidity <span id="humidity"></span></p>
       </div>
       <div class="row temp-item">
-        <p>windspeed <span id="wind"></span></p>
+        <p>Windspeed <span id="wind"></span></p>
       </div>
       <div class="row temp-item">
         <p>Weather <span id="weather"></span></p>
+      </div>
+      <div class="row temp-item">
+        <p>UV Index <span id="uvindex"></span></p>
       </div>
     </div>
 
@@ -70,9 +88,7 @@
     <div class="container-fluid accordion-section">
       <div class="row accordion-wrapper">
         <div class="accordion" id="accordianExample">
-          <h3 class="accordian-banner">
-            Find out the forecast for the coming 5 days
-          </h3>
+          <h3 class="accordian-banner"></h3>
           <div class="card">
             <div class="card-header" id="headingOne">
               <h2 class="clearfix">
@@ -83,7 +99,7 @@
                   aria-expanded="true"
                   aria-controls="collapseOne"
                 >
-                  <span id="nextdt-1"> </span><i class="fas fa-angle-down"></i>
+                  <span id="nextdt-1"> </span> <i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>
@@ -113,7 +129,8 @@
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  <span id="nextdt-2"> </span><i class="fas fa-angle-down"></i>
+                  <span id="nextdt-2"> </span> <span> </span
+                  ><i class="fas fa-angle-down"></i>
                 </a>
               </h2>
             </div>

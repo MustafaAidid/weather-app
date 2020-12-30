@@ -14,23 +14,47 @@ var nextDay4 = $("#nextdt-4");
 var nextDay5 = $("#nextdt-5");
 var city = "";
 var cityID = "";
+var cities = [];
 
 /****** API KEY & QUERY String*******/
 var APIKey = "a0aca8a89948154a4182dcecc780b513";
 var queryStr = "";
 var IdQueryStr = "";
+var UVQueryStr = "";
 
+/*********Fetch latest city searched******/
+if (localStorage.getItem("city") !== null) {
+  let lastCity = localStorage.getItem("city");
+  console.log(lastCity);
+  queryStr =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    lastCity +
+    "&APPID=" +
+    APIKey;
+  $(".last-search").text(lastCity);
+  getCurrentWeather();
+} else {
+  $(".accordian-banner").text(
+    "Find out the forecast for the coming days as well"
+  );
+  nextDay1.text("Day 1");
+  nextDay2.text("Day 2");
+  nextDay3.text("Day 3");
+  nextDay4.text("Day 4");
+  nextDay5.text("Day 5");
+  $(".history").hide();
+}
 /***** Fetch weather data based on city******/
 function getCity(event) {
   event.preventDefault();
-  city = searchBar.val().trim();
+  city = searchBar.val();
   queryStr =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&APPID=" +
     APIKey;
   console.log(city);
-  getCurrentWeather(city);
+  getCurrentWeather();
 }
 
 function getCurrentWeather() {
@@ -44,9 +68,32 @@ function getCurrentWeather() {
       currentBanner.text(
         "Currently it feels like " + data.main.feels_like + " in " + data.name
       );
+
+      localStorage.setItem("city", data.name);
+
       getFutureForecast(data.id);
     });
 }
+
+//******Fetch UVIndex*******/
+function getUVI(lat, lon) {
+  UVQueryStr =
+    "https://api.openweathermap.org/data/2.5/uvi?appid=" +
+    APIKey +
+    "&lat=" +
+    lat +
+    "&lon=" +
+    lon;
+  fetch(UVQueryStr)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      $("#uvindex").text(" : " + data.value);
+    });
+}
+
+// https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKey+"&lat="+lt+"&lon="+ln;
+
 function getFutureForecast(cityID) {
   IdQueryStr =
     "https://api.openweathermap.org/data/2.5/forecast?id=" +
@@ -57,6 +104,9 @@ function getFutureForecast(cityID) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      $(".accordian-banner").text(
+        "The forcast for the coming five days in " + data.city.name
+      );
       nextDay1.text(data.list[0].dt_txt.split(" ")[0] + " ");
       $("#day1-temp").text(data.list[0].main.temp);
       $("#day1-min").text(data.list[0].main.temp_min);
@@ -82,7 +132,12 @@ function getFutureForecast(cityID) {
       $("#day5-min").text(data.list[39].main.temp_min);
       $("#day5-max").text(data.list[39].main.temp_max);
       $("#day5-humd").text(data.list[39].main.humidity);
+      getUVI(data.city.coord.lat, data.city.coord.lon);
     });
 }
 
 searchBtn.on("click", getCity);
+$(".history-btn").on("click", () => {
+  localStorage.clear();
+  location.reload();
+});
